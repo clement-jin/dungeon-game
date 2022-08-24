@@ -1,0 +1,93 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://DeathPopup.gd" type="Script" id=1]
+[ext_resource path="res://FlatUI/kenneyUI.tres" type="Theme" id=2]
+
+[sub_resource type="Theme" id=1]
+
+[node name="DeathPopup" type="Control"]
+margin_left = 2.49776
+margin_top = 4.33823
+margin_right = 54.4978
+margin_bottom = 34.3382
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 3.26292
+margin_top = -0.474152
+margin_right = 72.2629
+margin_bottom = 57.5258
+theme = ExtResource( 2 )
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+margin_left = 7.28851
+margin_top = 4.0116
+margin_right = 111.289
+margin_bottom = 40.0116
+rect_scale = Vector2( 0.5, 0.5 )
+theme = SubResource( 1 )
+custom_constants/separation = 0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer"]
+margin_right = 104.0
+margin_bottom = 18.0
+size_flags_vertical = 1
+theme = ExtResource( 2 )
+text = "You Died"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="ColorRect/VBoxContainer"]
+margin_top = 18.0
+margin_right = 104.0
+margin_bottom = 36.0
+text = "Restart?"
+align = 1
+valign = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect"]
+margin_left = 4.99999
+margin_top = 27.1393
+margin_right = 117.0
+margin_bottom = 69.1393
+rect_scale = Vector2( 0.5, 0.5 )
+custom_constants/separation = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Yes" type="Button" parent="ColorRect/HBoxContainer"]
+margin_right = 60.3241
+margin_bottom = 42.251
+text = "Yes"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="No" type="Button" parent="ColorRect/HBoxContainer"]
+margin_left = 65.0
+margin_right = 112.324
+margin_bottom = 42.251
+theme = ExtResource( 2 )
+text = "No"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="ColorRect/HBoxContainer/Yes" to="." method="_on_Yes_pressed"]
+[connection signal="pressed" from="ColorRect/HBoxContainer/No" to="." method="_on_No_pressed"]

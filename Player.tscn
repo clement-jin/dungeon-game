@@ -1,0 +1,61 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Assets/frames/wizzard_f_idle_anim_f3.png" type="Texture" id=1]
+[ext_resource path="res://player-movement.gd" type="Script" id=2]
+[ext_resource path="res://Assets/frames/wizzard_f_idle_anim_f2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/frames/wizzard_f_idle_anim_f1.png" type="Texture" id=4]
+[ext_resource path="res://Assets/frames/wizzard_f_idle_anim_f0.png" type="Texture" id=5]
+[ext_resource path="res://Assets/frames/wizzard_f_run_anim_f1.png" type="Texture" id=6]
+[ext_resource path="res://Assets/frames/wizzard_f_run_anim_f0.png" type="Texture" id=7]
+[ext_resource path="res://Assets/frames/wizzard_f_run_anim_f2.png" type="Texture" id=8]
+[ext_resource path="res://Assets/frames/wizzard_f_run_anim_f3.png" type="Texture" id=9]
+[ext_resource path="res://Assets/frames/wizzard_m_hit_anim_f0.png" type="Texture" id=10]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.12573, 10.3122 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "hit",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 8.14311, 11.0341 )
+
+[node name="Player" type="Node2D"]
+
+[node name="PlayerKinematicBody2D" type="KinematicBody2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerKinematicBody2D"]
+position = Vector2( 0.459061, 0.394753 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="PlayerKinematicBody2D"]
+position = Vector2( 1.05434, -3.64985 )
+frames = SubResource( 2 )
+animation = "run"
+playing = true
+
+[node name="hitBox" type="Area2D" parent="PlayerKinematicBody2D"]
+position = Vector2( -0.0961609, 0.192324 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerKinematicBody2D/hitBox"]
+position = Vector2( 0.462155, 0.126043 )
+shape = SubResource( 3 )
+
+[connection signal="area_entered" from="PlayerKinematicBody2D/hitBox" to="PlayerKinematicBody2D" method="_on_hitBox_area_entered"]
+[connection signal="body_entered" from="PlayerKinematicBody2D/hitBox" to="PlayerKinematicBody2D" method="_on_hitBox_body_entered"]

@@ -1,0 +1,39 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Assets/frames/skelet_idle_anim_f3.png" type="Texture" id=1]
+[ext_resource path="res://Assets/frames/skelet_run_anim_f3.png" type="Texture" id=2]
+[ext_resource path="res://Assets/frames/skelet_idle_anim_f0.png" type="Texture" id=3]
+[ext_resource path="res://Assets/frames/skelet_idle_anim_f2.png" type="Texture" id=4]
+[ext_resource path="res://Assets/frames/skelet_run_anim_f0.png" type="Texture" id=5]
+[ext_resource path="res://Assets/frames/skelet_run_anim_f1.png" type="Texture" id=6]
+[ext_resource path="res://Assets/frames/skelet_run_anim_f2.png" type="Texture" id=7]
+[ext_resource path="res://Assets/frames/skelet_idle_anim_f1.png" type="Texture" id=8]
+[ext_resource path="res://skeleton.gd" type="Script" id=9]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 8 ), ExtResource( 4 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 5.63979, 7.91913 )
+
+[node name="skeleton" type="KinematicBody2D"]
+script = ExtResource( 9 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0.0961685, -0.19232 )
+frames = SubResource( 1 )
+animation = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.0961609, 0.192324 )
+shape = SubResource( 2 )
